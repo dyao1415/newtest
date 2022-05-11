@@ -1,20 +1,27 @@
+import requests
+from bs4 import BeautifulSoup
 
-from urllib import request
-import urllib
 
-def is_Important(link: str) -> bool:
+def fill_list(txt_file: str) -> list:
+    ret = []
+    with open(txt_file) as open_File:
+        open_File_Line = open_File.readline()
+        while open_File_Line:
+            ret.append(open_File_Line)
+            open_File_Line = open_File.readline()
+    return ret
 
-    f = urllib.request.urlopen(link)
-    opened_file = f.read()
-    if "keyword" in opened_file.decode('utf-8'):
+
+def is_Important(url: str) -> bool:
+    page = requests.get(url)
+    soup = BeautifulSoup(page.content, "html.parser")
+    soup2 = soup.get_text()
+    if "keyword" in soup2:
         return True
     else:
         return False
 
 
-with open("urls") as f:
-    myline = f.readline()
-    while myline:
-        print(is_Important(myline))
-        myline = f.readline()
-
+testing = fill_list("urls")
+for link in testing:
+    print(is_Important(link))
