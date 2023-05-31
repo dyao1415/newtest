@@ -25,3 +25,5 @@ def is_Important(url: str) -> bool:
 testing = fill_list("urls")
 for link in testing:
     print(is_Important(link))
+
+print("Testing out if I succesfully linked Git")
