@@ -27,3 +27,4 @@ for link in testing:
     print(is_Important(link))
 
 print("Testing out if I succesfully linked Git")
+print("Testing out if I successfully changed \'Intern\' to my name")
